@@ -1,6 +1,10 @@
 import React from "react";
 
 export default function WeatherCard({ weather }) {
+  // handle both field name variants
+  const temp = weather.temperature ?? weather.temp ?? "--";
+  const condition = weather.condition ?? weather.description ?? "--";
+
   return (
     <div style={s.card}>
       <h3 style={s.title}>🌤 Current Weather</h3>
@@ -8,7 +12,7 @@ export default function WeatherCard({ weather }) {
         <div style={s.item}>
           <span style={s.icon}>🌡</span>
           <div>
-            <p style={s.val}>{weather.temp}°C</p>
+            <p style={s.val}>{temp}°C</p>
             <p style={s.lbl}>Temperature</p>
           </div>
         </div>
@@ -22,12 +26,12 @@ export default function WeatherCard({ weather }) {
         <div style={s.item}>
           <span style={s.icon}>🌧</span>
           <div>
-            <p style={s.val}>{weather.rain} mm</p>
+            <p style={s.val}>{weather.rain ?? 0} mm</p>
             <p style={s.lbl}>Rainfall</p>
           </div>
         </div>
       </div>
-      <p style={s.desc}>{weather.description}</p>
+      <p style={s.desc}>{condition}</p>
     </div>
   );
 }

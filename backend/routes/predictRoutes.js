@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { predict } = require("../controllers/predictController");
-const { authMiddleware } = require("../middleware/authMiddleware");
 
-router.post("/predict-price", authMiddleware, predict);
+// Public route — no auth required for hackathon demo
+router.post("/predict-price", predict);
 
 module.exports = router;
